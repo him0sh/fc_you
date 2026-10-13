@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Manual match writes are performed only by the server after Firebase Admin verification.
+    // Client-side direct access is intentionally denied.
+    match /manualMatches/{document=**} { allow read, write: if false; }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
